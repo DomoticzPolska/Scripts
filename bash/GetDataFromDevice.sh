@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# Get value from Domoticz device JSON data and parse value from JSON.
-# required instalation tools: curl, jq
+# Skrypt pobiera dane JSON z urządzenia Domoticz (przycisku, temperatury itp.) 
+# a następnie pobiera daną "Data", przypisuje ją do zmiennej "data" a następnie 
+# wyświetla na ekran poleceniem "echo".
+# 
+# Do poprawnego działania skryptu należy zainstalować narzędzia: curl oraz jq.
 
-# device idx
+# id urządzenia w Domoticz
 IDX=5
 
-# get local IP (rpi IP)
+# pobranie IP naszego Raspberry lub inego komputera, na którym uruchamiamy skrypt
+# można pominąć ten krok i zapisać na sztywno IP w poleceniu następnym zamiast $LOCALIP
 LOCALIP=$(hostname -I | cut -d' ' -f1)
 
-# get JSON from device and parse data key (| jq -r ...)
+# Pobranie JSONa za pomocą curla i przekazanie go do narzędzie jq w celu pobrania 
+# konkrentej wartości z JSONa.
 data=$(curl -k -s "http://$LOCALIP/json.htm?type=devices&rid=$IDX" | jq -r '.result[] | .Data')
 
-# print value "data"
+# Wyświetlenie zmiennej "data" na ekran.
 echo $data
