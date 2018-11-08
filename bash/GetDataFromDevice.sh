@@ -15,7 +15,7 @@ LOCALIP=$(hostname -I | cut -d' ' -f1)
 
 # Pobranie JSONa za pomocą curla i przekazanie go do narzędzie jq w celu pobrania 
 # konkrentej wartości z JSONa.
-data=$(curl -k -s "http://$LOCALIP/json.htm?type=devices&rid=$IDX" | jq -r '.result[] | .Data')
+data=$(curl -k -s "https://$LOCALIP/json.htm?type=devices&rid=$IDX" | jq -r '.result[] | .Data')
 
 # Wyświetlenie zmiennej "data" na ekran.
 echo $data
