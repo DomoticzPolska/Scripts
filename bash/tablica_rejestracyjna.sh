@@ -12,4 +12,4 @@ plik_graficzny=$1
 
 rejestracja=$(alpr -c eu -n 1 -j $plik_graficzny | jq -r '.results[0].plate')
 
-echo $plik_graficzny
+echo $rejestracja
