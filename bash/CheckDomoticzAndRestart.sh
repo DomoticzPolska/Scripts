@@ -8,7 +8,7 @@
 LOCALIP=$(hostname -I | cut -d' ' -f1)
 
 # sprawdzamy status domoticza - czy odpowiada JSONem
-status=$(curl -k -s "http://$LOCALIP/json.htm?type=command&param=getconfig" | jq -r '.status')
+status=$(curl -k -s "https://$LOCALIP/json.htm?type=command&param=getconfig" | jq -r '.status')
 
 # sprawdzamy czy RPI ma internet
 check_internet=$(ping -q -w1 -c1 google.com &>/dev/null && echo online || echo offline)
