@@ -2,6 +2,7 @@
 
 # Sprawdzanie czy Domoticz działa porprawnie (odpowiada po http jsonem) i jak nie to restart usługi
 # uwzględniony jest brak internetu aby nie restartować niepotrzebnie usługi z tego powodu.
+# Należy ten skrypt uruchamiać cyklicznie (CRON).
 
 # pobieramy lokalne IP aby go użyć w CURL
 LOCALIP=$(hostname -I | cut -d' ' -f1)
