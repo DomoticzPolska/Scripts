@@ -14,6 +14,6 @@ status=$(curl -k -s "https://$LOCALIP/json.htm?type=command&param=getconfig" | j
 check_internet=$(ping -q -w1 -c1 google.com &>/dev/null && echo online || echo offline)
 
 # sprawdzamy warunki i jeśli są spełnione to restartujemy usługę.
-if [ "OK" != $status ] && [ "offline" != $check_internet ] ; then
+if [ "status OK" != "status $status" ] && [ "offline" != $check_internet ] ; then
     /etc/init.d/domoticz.sh restart
 fi
