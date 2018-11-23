@@ -13,7 +13,7 @@ echo " "
 #W Domoticzu tworzymy wirtulany czujnik temperatury 
 #Odczytujemy jego idx w tym przypadku jest to 56
 
-curl "http://192.168.100.121:80/json.htm?=command&param=udevice&idx=56&nvalue=0&svalue=$temp"
+curl "http://192.168.100.121:80/json.htm?type=command&param=udevice&idx=56&nvalue=0&svalue=$temp"
 
 # Jeżeli skrypt działa poprawnie dodajmey do crona wpis aby odczyt był robiony co 5min 
 # aby edytować crona wykonujemy polecenie crontab -e i dodajemy wpis
