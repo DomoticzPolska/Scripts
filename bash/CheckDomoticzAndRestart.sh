@@ -8,12 +8,16 @@
 LOCALIP=$(hostname -I | cut -d' ' -f1)
 
 # sprawdzamy status domoticza - czy odpowiada JSONem
-status=$(curl -k -s "https://$LOCALIP/json.htm?type=command&param=getconfig" | jq -r '.status')
+echo -e "1. Check Domoticz status...... \c"
+status=$(curl -k -s --max-time 5 "https://$LOCALIP/json.htm?type=command&param=getconfig" | jq -r '.status')
+echo $status
 
 # sprawdzamy czy RPI ma internet
+echo -e "2. Check internet available... \c"
 check_internet=$(ping -q -w1 -c1 google.com &>/dev/null && echo online || echo offline)
+echo $check_internet
 
 # sprawdzamy warunki i jeśli są spełnione to restartujemy usługę.
 if [ "status OK" != "status $status" ] && [ "offline" != $check_internet ] ; then
-    /etc/init.d/domoticz.sh restart
+	/etc/init.d/domoticz.sh restart
 fi
