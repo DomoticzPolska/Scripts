@@ -10,7 +10,7 @@ return {
 	},
 	execute = function(domoticz, device)
 	    if (domoticz.time.matchesRule('between 60 minutes before sunset and 60 minutes after sunrise')) then
-            domoticz.devices('Światłó korytarz').switchOn().checkFirst()
-        end
+            	domoticz.devices('Światło korytarz').switchOn().checkFirst()
+            end
 	end
 }
